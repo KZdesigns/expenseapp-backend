@@ -11,4 +11,13 @@ class GlAccountsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
   end
+
+  test "should update a existing gl_account" do
+    gl_account = gl_accounts(:one)
+    patch gl_account_url(gl_account), params: { gl_account: { id: 1, number: 9999, name: "update", gl_type: "expense"} }
+    gl_account.reload
+    assert_equal 9999, gl_account.number
+    assert_response :success
+  end
+
 end
