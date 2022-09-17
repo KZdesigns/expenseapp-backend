@@ -17,9 +17,8 @@ class GlAccountsController < ApplicationController
 
     def update
         @gl_account = GlAccount.find(gl_accounts_params[:id])
-
         if @gl_account.update(gl_accounts_params)
-            render json: @gl_account
+            render json: @gl_account, status: :ok
         else
             render json: @gl_accounts.erros, status: :unprocessable_entity
         end
